@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Flight Ratings</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .back-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flight Ratings</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Flight Number</th>
+                <th>Departure Date</th>
+                <th>Departure Time</th>
+                <th>Departure Airport</th>
+                <th>Arrival Airport</th>
+                <th>Average Rating</th>
+                <th>Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if ratings %}
+                {% for rating in ratings %}
+                    <tr>
+                        <td>{{ rating.flight_number }}</td>
+                        <td>{{ rating.depart_date }}</td>
+                        <td>{{ rating.depart_time }}</td>
+                        <td>{{ rating.depart_airport_code }}</td>
+                        <td>{{ rating.arrival_airport_code }}</td>
+                        <td>{{ rating.average_rating }}</td>
+                        <td>{{ rating.comments or 'No comments available' }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="7">No ratings available for flights.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <div class="back-button">
+        <a href="{{ url_for('airline_staff') }}">Back to Dashboard</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<h2>Flights Operated by {{ airline_name }}</h2>
+<form method="POST" action="/view_flights">
+    <label for="start_date">Start Date:</label>
+    <input type="date" id="start_date" name="start_date">
+
+    <label for="end_date">End Date:</label>
+    <input type="date" id="end_date" name="end_date"><br>
+
+    <label for="source">Source Airport/City:</label>
+    <input type="text" id="source" name="source">
+
+    <label for="destination">Destination Airport/City:</label>
+    <input type="text" id="destination" name="destination"><br>
+
+    <input type="submit" value="Filter Flights">
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Airline</th>
+            <th>Flight Number</th>
+            <th>Departure Date</th>
+            <th>Departure Time</th>
+            <th>Arrival Date</th>
+            <th>Arrival Time</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for flight in flights %}
+            <tr>
+                <td>{{ flight.airline_name }}</td>
+                <td>{{ flight.flight_number }}</td>
+                <td>{{ flight.depart_date }}</td>
+                <td>{{ flight.depart_time }}</td>
+                <td>{{ flight.arrival_date }}</td>
+                <td>{{ flight.arrival_time }}</td>
+                <td>{{ flight.depart_airport_code }}</td>
+                <td>{{ flight.arrival_airport_code }}</td>
+                <td>{{ flight.flight_status }}</td>
+                <td>
+                    <a href="/view_flight_customers?flight_number={{ flight.flight_number }}&depart_date={{ flight.depart_date }}&depart_time={{ flight.depart_time }}">View Customers</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

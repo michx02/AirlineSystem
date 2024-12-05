@@ -12,23 +12,9 @@
         <h1>Welcome, {{airline_name}} employee </h1>
         </header>
             <h2>View My flights</h2>
-            <table>
-                {% if future_flights %}
-                    {%for elem in future_flights%}
-                    <tr>
-                        <td>{{ elem['flight_number'] }}</td>
-                        <td>{{ elem['depart_date'] }}</td>
-                        <td>{{ elem['depart_time'] }}</td>
-                        <td>{{ elem['depart_airport_code'] }}</td>
-                        <td>{{ elem['status'] }}</td>
-                    </tr>
-                    {% endfor %}
-                {% else %}
-                    <tr>
-                        <td colspan="4">Currently, you have no future flights.</td>
-                    </tr>
-                {% endif %}
-            </table> 
+            <a href="/view_flights">View Flights</a>
+
+ 
             <section>
                 <h2>Create Flights</h2>
                 <form action="/add_flight" method="POST">
@@ -80,11 +66,8 @@
                     <input type="text" id="depart_time" name="depart_time" pattern="(?:[01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)" placeholder="HH:MM:SS" required><br><br>
 
                     <label for="status"> New Status: </label>
-                    <select type="text" id="status" name="status" required><br><br>
-                    <option value="ontime">Ontime</option>
-                    <option value="delayed">Delayed</option>
-                    <option value="cancelled">Cancelled</option>
-                    </select>
+                    <input type="text" id="status" name="status" required><br><br>
+                    
 
                     <input type="submit" value="Change Status">
                 </form>
@@ -138,30 +121,14 @@
                     <select type="text" id="type" name="type" required><br><br>
                     <option value="domestic">Domestic</option>
                     <option value="international">International</option>
+                    <option value="international">Both</option>
                     </select>
                     <input type="submit" value="Add Airport">
                 </form>
             </section>
 
             <h2> Reviews and Ratings for Flights </h2>
-            <table>
-                {% if reviews %}
-                    {% for dict in reviews %}
-                    <tr>
-                        <td> {{ dict['airline_name'] }} </td>
-                        <td> {{ dict['flight_number'] }} </td>
-                        <td> {{ dict['depart_date'] }} </td>
-                        <td> {{ dict['depart_time'] }} </td>
-                        <td> {{ dict['rating'] }} </td>
-                        <td> {{ dict['comment'] }} </td>
-                    </tr>
-                    {% endfor%}
-                {% else %}
-                    <tr>
-                        <td colspan="4"> Currently, there are no comments and ratings for any flights </td>
-                    </tr>
-                {% endif %}
-            </table>
+            <button><a href="/view_flight_ratings">CHECK HOW PEOPLE RATE YOUR AIRLINE/FLIGHTS</a></button>
 
             <form action="/schedule_maintenance" method="POST">
                 <h2>Schedule Airplane Maintenance</h2>
@@ -187,16 +154,27 @@
                 <input type="submit" value="Schedule Maintenance">
             </form>
 
-            <h2>Most Frequent Customer Last Year:</h2>
-            <p> Customer First Name: </p>
-            <p> Customer Last Name: </p>
-            <p> Customer Email: </p>
+            <section>
+                <h2>Customer Management</h2>
+                <ul>
+                    <li><a href="/view_frequent_customers">View Frequent Customers</a></li>
+                    <!-- When on 'View Frequent Customers' page, they'll see a link to view individual customer flights -->
+                </ul>
+            </section>
+
+            <section>
+                <h2>Reports</h2>
+                <ul>
+                    <li><a href="/view_revenue">View Earned Revenue</a></li>
+                    <li><a href="/generate_report">Generate Reports</a></li>
+                </ul>
+            </section>
 
     </body>
     <form action="/airline_staff_logout" method="GET">
         <input type="submit" value="Logout">
     </form>
     <footer>
-        <p>&copy; 2024 New Flight. All rights reserved.</p>
+        <p>Michael Mvano :)</p>
     </footer>
 </html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Spending</title>
+</head>
+<body>
+    <h1>Track Your Spending</h1>
+
+    <!-- Date Range Form -->
+    <form action="/track_spending" method="post">
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" value="{{ start_date }}"><br><br>
+
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" value="{{ end_date }}"><br><br>
+
+        <input type="submit" value="Track Spending">
+    </form>
+
+    <!-- Total Spending -->
+    <h2>Total Spending</h2>
+    <p>You have spent a total of <strong>${{ total_spent }}</strong> during the selected period.</p>
+
+    <!-- Monthly Spending Chart -->
+    <h2>Monthly Spending</h2>
+    <img src="data:image/png;base64,{{ chart_base64 }}" alt="Monthly Spending Chart">
+
+    <!-- Monthly Spending Table -->
+    <h2>Monthly Spending Details</h2>
+    {% if monthly_spending %}
+        <table border="1">
+            <tr>
+                <th>Month</th>
+                <th>Amount Spent</th>
+            </tr>
+            {% for row in monthly_spending %}
+                <tr>
+                    <td>{{ row['month'] }}</td>
+                    <td>${{ row['monthly_spent'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No spending data available for the selected period.</p>
+    {% endif %}
+
+    <!-- Spending Details Table -->
+    <h2>Spending Details</h2>
+    {% if spending_details %}
+        <table border="1">
+            <tr>
+                <th>Airline Name</th>
+                <th>Flight Number</th>
+                <th>Price</th>
+                <th>Purchase Date</th>
+                <th>Departure Date</th>
+                <th>Arrival Date</th>
+            </tr>
+            {% for detail in spending_details %}
+                <tr>
+                    <td>{{ detail.airline_name }}</td>
+                    <td>{{ detail.flight_number }}</td>
+                    <td>${{ detail.calculated_price }}</td>
+                    <td>{{ detail.purchase_date }}</td>
+                    <td>{{ detail.depart_date }}</td>
+                    <td>{{ detail.arrival_date }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No spending details available for the selected period.</p>
+    {% endif %}
+
+    <section>
+        <a href="/customer_dashboard.html">Back to Dashboard</a>
+    </section>
+</body>
+</html>

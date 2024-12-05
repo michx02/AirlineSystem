@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Report</title>
+</head>
+<body>
+    <h1>Generate Flight Report</h1>
+
+    <form action="/generate_report" method="post">
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" value="{{ start_date }}"><br><br>
+
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" value="{{ end_date }}"><br><br>
+
+        <label for="flight_status">Flight Status:</label>
+        <select id="flight_status" name="flight_status">
+            <option value="" {% if not flight_status %}selected{% endif %}>All</option>
+            <option value="On Time" {% if flight_status == 'On Time' %}selected{% endif %}>On Time</option>
+            <option value="Delayed" {% if flight_status == 'Delayed' %}selected{% endif %}>Delayed</option>
+            <option value="Cancelled" {% if flight_status == 'Cancelled' %}selected{% endif %}>Cancelled</option>
+        </select><br><br>
+
+        <input type="submit" value="Generate Report">
+    </form>
+
+    <h2>Report</h2>
+    {% if report_data %}
+        <table border="1">
+            <tr>
+                <th>Flight Number</th>
+                <th>Departure Date</th>
+                <th>Departure Time</th>
+                <th>Arrival Date</th>
+                <th>Arrival Time</th>
+                <th>Flight Status</th>
+                <th>Revenue ($)</th>
+            </tr>
+            {% for row in report_data %}
+                <tr>
+                    <td>{{ row.flight_number }}</td>
+                    <td>{{ row.depart_date }}</td>
+                    <td>{{ row.depart_time }}</td>
+                    <td>{{ row.arrival_date }}</td>
+                    <td>{{ row.arrival_time }}</td>
+                    <td>{{ row.flight_status }}</td>
+                    <td>{{ row.revenue or '0.00' }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No data available for the selected filters.</p>
+    {% endif %}
+
+    <section>
+        <a href="/airline_staff_dashboard">Back to Dashboard</a>
+    </section>
+</body>
+</html>
