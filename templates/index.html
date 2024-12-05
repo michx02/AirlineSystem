@@ -35,6 +35,9 @@
             <input type="submit" value="Search Flights">
         </form>
     </section>
+    <section>
+        <h2>View Flight status</h2>
+
     <form action="{{ url_for('check_flight_status') }}" method="post">
         <label for="airline-name">Airline Name:</label>
         <input type="text" id="airline-name" name="airline_name" required><br><br>
@@ -47,6 +50,7 @@
     
         <input type="submit" value="Check Status">
     </form>
+</section>
     
     
 </body>
