@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Search and Status</title>
+    
+
+</head>
+<body>
+    <header>
+    <h1>Flights Home Page</h1>
+    <nav>
+        <button><a href="registration_for_customer_page.html">Register as a Customer</a></button>
+        <button><a href="registration_for_airline_staff_page.html">Register as Airline staff</a></button>
+        <button><a href="airline_staff_login_page.html">Login as a Staff</a></button>
+        <button><a href="customer_login_page.html">Login as a Customer</a></button>
+    </nav>
+</header>
+    <section>
+        <h2>Search for Flights</h2>
+        <form action="/search_flights" method="get"> 
+            <label for="source">Flight Airport:</label>
+            <input type="text" id="source" name="source" required><br><br>
+
+            <label for="destination">Destination Airport:</label>
+            <input type="text" id="destination" name="destination" required><br><br>
+
+            <label for="departure-date">Departure Date:</label>
+            <input type="date" id="departure-date" name="departure_date" required><br><br>
+
+            <label for="return-date">Return Date:</label>
+            <input type="date" id="return-date" name="return_date" ><br><br>
+
+            <input type="submit" value="Search Flights">
+        </form>
+    </section>
+    <form action="{{ url_for('check_flight_status') }}" method="post">
+        <label for="airline-name">Airline Name:</label>
+        <input type="text" id="airline-name" name="airline_name" required><br><br>
+    
+        <label for="flight-number">Flight Number:</label>
+        <input type="text" id="flight-number" name="flight_number" required><br><br>
+    
+        <label for="flight-date">Flight Date (Departure/Arrival):</label>
+        <input type="date" id="flight-date" name="flight_date" required><br><br>
+    
+        <input type="submit" value="Check Status">
+    </form>
+    
+    
+</body>
+<footer>
+    <p>Michael Mvano :)</p>
+</footer>
+</html>
