@@ -1,32 +1,77 @@
-FILE LIST AND WHAT THEY DO:
+Airline System
+Welcome to the Airline System project! This web application allows users to book flights, manage their reservations, and interact with an admin interface for staff to view and manage bookings.
 
+Table of Contents
+Description
+Features
+Technologies Used
+Installation Instructions
+Usage
+Contributing
+License
+Description
+This project is a web-based airline reservation system designed to facilitate booking, canceling, and managing flights for customers. Additionally, there is an admin interface where staff can view and manage bookings, as well as update flight availability.
 
-main.py: A Python script, likely serving as the main entry point for the application.
+The system includes:
 
-airsystem.sql: A SQL file, possibly containing the database schema or data for the application.
+A login system for both customers and staff
+Flight search and booking capabilities for customers
+Admin panel for managing bookings and flights
+User-friendly interface with modern design
+Features
+Customer Side:
 
-README.txt: A text file that typically provides an overview of the project, including instructions and information about the application.
+User registration and login
+Search and filter flights by destination, date, and availability
+View available flights and make bookings
+View and cancel existing bookings
+Admin Side:
 
-.gitignore: A configuration file specifying which files and directories should be ignored by Git in version control.
+Admin login interface
+View and manage all customer bookings
+Add, update, or delete flight information
+Technologies Used
+Frontend: HTML, CSS (with a blue theme)
+Backend: Python (Flask or Django, depending on your implementation)
+Database: SQL (MySQL/PostgreSQL)
+Version Control: Git and GitHub for source code management
+Installation Instructions
+Clone the repository:
 
-templates/: A directory that likely contains HTML template files used by the application for rendering web pages.
+bash
+Copy
+git clone https://github.com/michx02/AirlineSystem.git
+Install dependencies: Navigate into the project directory and install the required packages using pip (assuming Python is installed):
 
-List of files in the templates/ directory:
-1. airline_staff_dashboard.html: Dashboard for airline staff to manage flights and perform administrative tasks.
-2. airline_staff_login_page.html: Login page for airline staff.
-3. customer_dashboard.html: Dashboard for customers to view and manage their bookings.
-4. customer_login_page.html: Login page for customers.
-5. generate_report.html: A page for generating reports, possibly related to revenue, flights, or customer activity.
-6. index.html: Likely serves as the homepage for the application.
-7. rating.html: A page for submitting or viewing flight ratings.
-8. registration_for_airline_staff_page.html: Registration form for airline staff to create accounts.
-9. registration_for_customer_page.html: Registration form for customers to create accounts.
-10. track_spending.html: A page that allows users to track their spending on flights.
-11. view_customer_flights.html: A page to display the flights associated with a particular customer.
-12. view_flight_customers.html: A page to display the list of customers on a specific flight.
-13. view_flight_ratings.html: A page for viewing ratings and reviews of flights.
-14. view_flight_status.html: A page for checking the status of flights (e.g., on-time, delayed, or canceled).
-15. view_flights.html: A page to display available flights for booking or management.
-16. view_frequent_customers.html: A page to display frequent customers of the airline.
-17. view_future_flights.html: A page to display flights scheduled for the future.
-18. view_revenue.html: A page for viewing revenue reports, possibly broken down by flights or time periods.
+bash
+Copy
+cd AirlineSystem
+pip install -r requirements.txt
+Set up the database:
+
+Ensure that your database server (MySQL/PostgreSQL) is running.
+Use the provided airsystem.sql file to create the necessary tables and populate them with sample data:
+bash
+Copy
+mysql -u root -p < airsystem.sql
+Run the application: Start the server using:
+
+bash
+Copy
+python app.py  # Or 'python manage.py' if using Django
+Access the application: Open your browser and go to http://127.0.0.1:5000 (or the appropriate port if configured differently).
+
+Usage
+Once you navigate to the application, you can log in as either a Customer or an Admin.
+Customers can book flights, view their booking history, and manage their reservations.
+Admins can log in to manage flight data and customer bookings.
+Contributing
+Contributions are welcome! Feel free to fork the repository and submit pull requests with any improvements or fixes. Please follow these steps when contributing:
+
+Fork the repository
+Create a new branch (git checkout -b feature-name)
+Commit your changes (git commit -am 'Add new feature')
+Push to the branch (git push origin feature-name)
+Create a pull request to merge your changes
+License
+This project is licensed under the MIT License - see the LICENSE file for details
