@@ -1,8 +1,8 @@
 
 
-# Airline System
+# Airline Booking System
 
-Welcome to the Airline System project! This web application allows users to book flights, manage their reservations, and interact with an admin interface for staff to view and manage bookings.
+Welcome to the Airline Booking System project! This web application allows users to book flights, manage their reservations, and interact with an admin interface for staff to view and manage bookings.
 
 ## Table of Contents
 
